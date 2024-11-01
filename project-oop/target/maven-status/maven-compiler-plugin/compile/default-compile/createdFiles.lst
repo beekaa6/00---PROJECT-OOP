@@ -1,0 +1,5 @@
+com\beka\TradeCSV.class
+com\beka\UserInterface.class
+com\beka\App.class
+com\beka\Command.class
+com\beka\HelpCommand.class

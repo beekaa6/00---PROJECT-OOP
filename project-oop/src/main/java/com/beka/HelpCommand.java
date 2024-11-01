@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class HelpCommand implements Command{
   private HashMap<String, String> commands;
 
-  
   public HelpCommand() {
     this.commands = new HashMap<>();
     this.commands.put("monthly_total", "Returns the sum of both the export and import for a specified month of a specified year");
@@ -36,4 +35,14 @@ public class HelpCommand implements Command{
       return this.commands.get(key);
     }
   }
+  
+  public void requiredParameters(String commandItSelf){
+    System.out.println("The command "+commandItSelf+" have the following parameters available to customize their query:");
+    System.out.println("country (default: \"all\")");
+    System.out.println("commodity (default: \"all\")");
+    System.out.println("transport_mode (default: \"all\")");
+    System.out.println("measure (default: \"$\")");
+    System.out.println();
+  }
+  
 }
