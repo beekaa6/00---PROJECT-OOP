@@ -31,3 +31,4 @@ Once you have completed the implementation, take a step back and ask yourself th
 The power of object-oriented programming lies in being able to abstract stakeholder requirements (the "whats" the program needs to do) into simple APIs that can be implemented in different ways using polymorphism. For this to work effectively, you need classes/modules that can function independently, meaning what these classes/modules need to function is encapsulated within the class.
 
 > **WARNING**: To comfortably tackle this exercise, you should already be able to create rudimentary Java programs. You should know the basic syntax, be able to create classes and interfaces, and have a good understanding of collections and generics. It's okay to look up some edge cases such as APIs or keywords; the basics are what you should already be familiar with.
+
