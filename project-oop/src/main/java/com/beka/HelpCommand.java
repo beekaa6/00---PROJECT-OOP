@@ -2,7 +2,7 @@ package com.beka;
 
 import java.util.HashMap;
 
-public class HelpCommand implements Command{
+public class HelpCommand {
   private HashMap<String, String> commands;
 
   public HelpCommand() {

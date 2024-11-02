@@ -36,6 +36,12 @@ public class UserInterface {
       } else if (input.toLowerCase().contains("yearly_average")) {
         double result =yearlySum.getYearlyAverage(readFile, scanner);
         System.out.println("Total average for the year is: " + result);
+      } else if (input.toLowerCase().contains("overview")) {
+        Overview overview = new Overview();
+        overview.startOverview();
+        overview.displayOverview();
+      } else {
+        System.out.println("Invalid command! Type help for more information");
       }
     }
   }
