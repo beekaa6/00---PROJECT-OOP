@@ -40,14 +40,33 @@ public class TradeCSV {
     return (long) 0;
   }
   
-  public double startReadingMonthlyAverage(long totalSum){
+  public Long startReadingYearTotal(String year, String country, String commodity, String transport_mode, String measure){
+    this.count = 0;
+    try (CSVReader reader = new CSVReader(new FileReader("covid_and_trade.csv"))) {
+      List<String[]> rows = reader.readAll();
+      long totalSum = rows.stream()
+      .filter(n -> {
+        if ((n[0].equals("Exports") || n[0].equals("Imports")) &&
+              Integer.parseInt(n[1]) == Integer.parseInt(year) &&
+              n[4].equals(country) &&
+              n[5].equals(commodity) &&
+              n[6].equals(transport_mode) &&
+              n[7].equals(measure)){
+                count++;
+                return true;
+              };
+        return false;
+      })
+      .mapToLong(n -> Long.parseLong(n[8]))
+      .sum();
+    
+      return totalSum;
 
-
-    if (this.count == 0) {
-      return 0.0;
+    } catch (Exception e) {
+      e.printStackTrace();
     }
 
-    return 1.0 * totalSum / this.count;
+    return (long) 0;
   }
   
   public int getCount() {

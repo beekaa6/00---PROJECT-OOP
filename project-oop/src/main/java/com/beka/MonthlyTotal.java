@@ -12,7 +12,7 @@ public class MonthlyTotal {
         System.out.println("month in number between 01 - 12");
         month = scanner.nextLine();
       }
-      if (month.length() == 1) {
+      if (month.length() == 1) { 
         month = "0" + month;
       }
       System.out.print("country (default: \"all\"): ");

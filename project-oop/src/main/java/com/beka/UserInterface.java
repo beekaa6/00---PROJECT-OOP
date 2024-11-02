@@ -6,6 +6,7 @@ public class UserInterface {
   
   public void startApp(){
     MonthlyTotal monthlySum = new MonthlyTotal();
+    YearlyTotal yearlySum = new YearlyTotal();
     TradeCSV readFile = new TradeCSV();
     Scanner scanner = new Scanner(System.in);
 
@@ -30,8 +31,12 @@ public class UserInterface {
       } else if (input.toLowerCase().contains("monthly_average")) {
         double result =monthlySum.getMonthlyAverage(readFile, scanner);
         System.out.println("Total average for the month is: " + result);
-      } 
-
+      } else if (input.toLowerCase().contains("yearly_total")) {
+        System.out.println("Total sum for the year is: " + yearlySum.getYearlyTotal(readFile, scanner));
+      } else if (input.toLowerCase().contains("yearly_average")) {
+        double result =yearlySum.getYearlyAverage(readFile, scanner);
+        System.out.println("Total average for the year is: " + result);
+      }
     }
   }
 }
