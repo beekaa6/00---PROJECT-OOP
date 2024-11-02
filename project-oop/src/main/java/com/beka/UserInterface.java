@@ -5,7 +5,10 @@ import java.util.Scanner;
 public class UserInterface {
   
   public void startApp(){
+    MonthlyTotal monthlySum = new MonthlyTotal();
+    TradeCSV readFile = new TradeCSV();
     Scanner scanner = new Scanner(System.in);
+
     while (true) {
       System.out.print("Enter command: ");
       String input = scanner.nextLine();
@@ -23,9 +26,11 @@ public class UserInterface {
           help.execute();
         }
       } else if (input.toLowerCase().contains("monthly_total")) {
-        MonthlyTotal monthlySum = new MonthlyTotal();
-        System.out.println("Total sum for the month is: " + monthlySum.getMonthlyTotal(scanner));
-      }
+        System.out.println("Total sum for the month is: " + monthlySum.getMonthlyTotal(readFile, scanner));
+      } else if (input.toLowerCase().contains("monthly_average")) {
+        double result =monthlySum.getMonthlyAverage(readFile, scanner);
+        System.out.println("Total average for the month is: " + result);
+      } 
 
     }
   }

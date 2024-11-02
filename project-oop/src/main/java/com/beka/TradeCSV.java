@@ -6,20 +6,27 @@ import java.util.List;
 import com.opencsv.CSVReader;
 
 public class TradeCSV {
+
+  private int count;
   
-  public Long startReadingMonthly(String month, String country, String commodity, String transport_mode, String measure){
+  public Long startReadingMonthlyTotal(String month, String country, String commodity, String transport_mode, String measure){
+    this.count = 0;
     try (CSVReader reader = new CSVReader(new FileReader("covid_and_trade.csv"))) {
       List<String[]> rows = reader.readAll();
       long totalSum = rows.stream()
       .filter(n -> {
         String date = n[2];
         String[] split = date.split("/");
-        return (n[0].equals("Exports") || n[0].equals("Imports")) &&
+        if ((n[0].equals("Exports") || n[0].equals("Imports")) &&
               split[1].equals(month) &&
               n[4].equals(country) &&
               n[5].equals(commodity) &&
               n[6].equals(transport_mode) &&
-              n[7].equals(measure);
+              n[7].equals(measure)){
+                count++;
+                return true;
+              };
+        return false;
       })
       .mapToLong(n -> Long.parseLong(n[8]))
       .sum();
@@ -31,5 +38,19 @@ public class TradeCSV {
     }
 
     return (long) 0;
+  }
+  
+  public double startReadingMonthlyAverage(long totalSum){
+
+
+    if (this.count == 0) {
+      return 0.0;
+    }
+
+    return 1.0 * totalSum / this.count;
+  }
+  
+  public int getCount() {
+    return count;
   }
 }

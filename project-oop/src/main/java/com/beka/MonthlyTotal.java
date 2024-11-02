@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 public class MonthlyTotal {
   
-  public Long getMonthlyTotal(Scanner scanner) {
-    TradeCSV readFile = new TradeCSV();
-
+  public Long getMonthlyTotal(TradeCSV readFile, Scanner scanner) {
       System.out.print("month (default: \"01\"): ");
-      String month = scanner.nextLine();
+      String month = scanner.nextLine().trim();
       month = month.isEmpty() ? "01" : month;
       while (Integer.parseInt(month) < 1 || Integer.parseInt(month) > 12) {
         System.out.println("month in number between 01 - 12");
@@ -31,6 +29,11 @@ public class MonthlyTotal {
       measure = measure.isEmpty() ? "$" : measure;
       System.out.println();
       
-      return readFile.startReadingMonthly(month, country, commodity, transport_mode, measure);
+      return readFile.startReadingMonthlyTotal(month, country, commodity, transport_mode, measure);
+  }
+
+  public double getMonthlyAverage(TradeCSV readFile, Scanner scanner) {
+    long totalSum = getMonthlyTotal(readFile, scanner);
+    return 1.0 * totalSum / readFile.getCount();
   }
 }
